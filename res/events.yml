@@ -1,6 +1,15 @@
 ---
 # https://developer.github.com/v3/activity/events/types/
 
+# the order is crucial, first match wins!
+
+watch: # 49
+  present:
+    - action
+    - repository
+  exactly:
+    action: started
+
 # check_run # 1
 
 # check_suite # 2
@@ -158,7 +167,7 @@ repository: # 41
   present:
     - action
     - repository
-    - organization
+  number_of_keys: 3
 
 # repository_import # 42
 
@@ -166,7 +175,9 @@ repository: # 41
 
 # security_advisory # 44
 
-# star_event # 45
+star: # 45
+  present:
+    - starred_at
 
 status: # 46
   present:
@@ -181,10 +192,3 @@ team_add: # 48
   present:
     - team
     - repository
-
-watch: # 49
-  present:
-    - action
-    - repository
-  exactly:
-    action: started
