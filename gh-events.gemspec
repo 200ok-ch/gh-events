@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "github/events/version"
+require "gh/events/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "gh-events"
-  spec.version       = Github::Events::VERSION
+  spec.version       = GH::Events::VERSION
   spec.authors       = ["Phil Hofmann"]
   spec.email         = ["phil@200ok.ch"]
 

@@ -1,4 +1,4 @@
-require "github/events/version"
+require "gh/events/version"
 
 require 'yaml'
 
