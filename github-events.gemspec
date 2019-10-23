@@ -6,8 +6,8 @@ require "github/events/version"
 Gem::Specification.new do |spec|
   spec.name          = "github-events"
   spec.version       = Github::Events::VERSION
-  spec.authors       = ["phil"]
-  spec.email         = ["phil@branch14.org"]
+  spec.authors       = ["Phil Hofmann"]
+  spec.email         = ["phil@200ok.ch"]
 
   spec.summary       = %q{Determine Github event types by their payload.}
   spec.description   = %q{Determine Github event types by their payload.}
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = spec.homepage
