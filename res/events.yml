@@ -121,7 +121,7 @@ page_build: # 29
 public: # 33
   present:
     - repository
-# TODO: Object.keys(payload).length === 2
+  number_of_keys: 2
 
 pull_request: # 34
   present:

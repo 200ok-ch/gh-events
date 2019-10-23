@@ -26,6 +26,9 @@ module Github
         z = payload.dup.merge(characteristics['exactly'] || {}) == payload
         next unless z
 
+        next if characteristics['number_of_keys'] &&
+                keys.count != characteristics['number_of_keys']
+
         return type.to_sym
       end
       return :unknown

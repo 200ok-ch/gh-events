@@ -6,7 +6,7 @@ RSpec.describe Github::Events do
   end
 
   path = File.expand_path(File.join(%w(.. .. fixtures)), __FILE__)
-  Dir.glob('*.json', base: path).each do |file|
+  Dir.glob('*.json', base: path).sort.each do |file|
     name = File.basename(file, '.json')
     it "detects events of type #{name}" do
       payload = JSON.parse(File.read(File.join(path, file)))
