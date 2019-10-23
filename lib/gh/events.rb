@@ -2,7 +2,7 @@ require "github/events/version"
 
 require 'yaml'
 
-module Github
+module GH
   module Events
     class Error < StandardError; end
 

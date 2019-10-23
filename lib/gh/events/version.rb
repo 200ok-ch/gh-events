@@ -1,4 +1,4 @@
-module Github
+module GH
   module Events
     VERSION = "0.1.0"
   end
