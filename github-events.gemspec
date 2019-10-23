@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "github/events/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "github-events"
+  spec.name          = "gh-events"
   spec.version       = Github::Events::VERSION
   spec.authors       = ["Phil Hofmann"]
   spec.email         = ["phil@200ok.ch"]
 
   spec.summary       = %q{Determine Github event types by their payload.}
   spec.description   = %q{Determine Github event types by their payload.}
-  spec.homepage      = "https://github.com/200ok-ch/github-events"
+  spec.homepage      = "https://github.com/200ok-ch/gh-events"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
