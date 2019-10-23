@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-events (0.1.0)
+    gh-events (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -27,7 +27,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
-  github-events!
+  gh-events!
   rake (~> 10.0)
   rspec (~> 3.0)
 
