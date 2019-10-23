@@ -1,0 +1,190 @@
+---
+# https://developer.github.com/v3/activity/events/types/
+
+# check_run # 1
+
+# check_suite # 2
+
+commit_comment: # 3
+  present:
+    - comment
+    - repository
+  absent:
+    - issue
+    - pull_request
+
+# content_reference # 4
+
+create: # 5
+  present:
+    - ref_type
+    - ref
+    - master_branch
+    - description
+    - repository
+
+delete: # 6
+  present:
+    - ref_type
+    - ref
+    - repository
+  absent:
+    - master_branch
+
+# deploy_key # 7
+
+deployment: # 8
+  present:
+    - deployment
+    - repository
+  absent:
+    - deployment_status
+
+deployment_status: # 9
+  present:
+    - deployment
+    - deployment_status
+    - repository
+
+# download # 10
+
+# follow # 11
+
+fork: # 12
+  present:
+    - forkee
+    - repository
+
+# fork_apply # 13
+
+# git_hub_app_authorization # 14
+
+# gist # 15
+
+gollum: # 16
+  present:
+    - pages
+    - repository
+
+# installation: # 17
+
+# installation_repositories: # 18
+
+issue_comment: # 19
+  present:
+    - issue
+    - comment
+    - repository
+
+issues: # 20
+  present:
+    - issue
+    - repository
+  absent:
+    - comment
+
+# label # 21
+
+# marketplace_purchase # 22
+
+member: # 23
+  present:
+    - member
+    - repository
+
+membership: # 24
+  present:
+    - scope
+    - member
+    - team
+    - organization
+
+# meta # 25
+
+# milestone # 26
+
+# organization # 27
+
+# org_block # 28
+
+page_build: # 29
+  present:
+    - build
+    - repository
+
+# project_card # 30
+
+# project_column # 31
+
+# project # 32
+
+public: # 33
+  present:
+    - repository
+# TODO: Object.keys(payload).length === 2
+
+pull_request: # 34
+  present:
+    - pull_request
+    - repository
+  absent:
+    - comment
+
+# pull_request_review # 35
+
+pull_request_review_comment: # 36
+  present:
+    - comment
+    - pull_request
+    - repository
+
+push: # 37
+  present:
+    - ref
+    - before
+    - commits
+    - repository
+
+# registry_package # 38
+
+release: # 39
+  present:
+    - release
+    - repository
+
+# repository_dispatch # 40
+
+repository: # 41
+  present:
+    - action
+    - repository
+    - organization
+
+# repository_import # 42
+
+# repository_vulnerability_report # 43
+
+# security_advisory # 44
+
+# star_event # 45
+
+status: # 46
+  present:
+    - sha
+    - state
+    - description
+    - branches
+
+# team # 47
+
+team_add: # 48
+  present:
+    - team
+    - repository
+
+watch: # 49
+  present:
+    - action
+    - repository
+  exactly:
+    action: started
