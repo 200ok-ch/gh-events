@@ -1,4 +1,5 @@
 require "gh/events/version"
+require "gh/events/slack"
 
 require 'yaml'
 require 'ostruct'
