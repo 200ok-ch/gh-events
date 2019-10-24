@@ -1,6 +1,7 @@
 require "gh/events/version"
 
 require 'yaml'
+require 'ostruct'
 
 module GH
   module Events
@@ -12,8 +13,11 @@ module GH
     HEURISTICS = YAML.load_file(PATH)
 
     def typeof(payload)
-      keys = payload.keys
+      payload = payload.marshal_dump if payload.is_a?(OpenStruct)
+      keys = payload.keys.map(&:to_s)
       HEURISTICS.each do |type, characteristics|
+        # puts ("-" * 30) + " #{type}"
+
         # all keys in `present` are there
         x = ((characteristics['present'] || []) - keys)
         next unless x.empty?
@@ -26,8 +30,9 @@ module GH
         z = payload.dup.merge(characteristics['exactly'] || {}) == payload
         next unless z
 
-        next if characteristics['number_of_keys'] &&
-                keys.count != characteristics['number_of_keys']
+        n = characteristics['number_of_keys'] &&
+            keys.count != characteristics['number_of_keys']
+        next if n
 
         return type.to_sym
       end
