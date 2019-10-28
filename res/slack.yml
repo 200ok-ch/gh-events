@@ -1,21 +1,33 @@
+# refs are unified. So all events have `ref` and `ref_type`.
+
 unknown: >-
   An unknown event occurred.
+
 push: >-
-  _<%= pusher.name %>_ pushed <%= ref %>
-  to `<%= repository.full_name %>`
+  _<%= pusher.name %>_ <%= forced ? 'force-' : '' %>pushed
+  <%= size %> commits
+  to <%= ref_type %> `<%= ref %>`
+  on <<%= repository.html_url %>|<%= repository.full_name %>>
   :star: <%= repository.stargazers_count %>
   :eye: <%= repository.watchers_count %>
   (<<%= compare %>|compare>)
+
 commit_comment: >-
   _<%= comment.user.login %>_ commented the
   <%= comment.url %>|commit `<%= comment.commit_id %>`> on
   <<%= repository.html_url %>|<%= repository.full_name %>>: _<%= comment.body %>_
-watch: An event of type `watch` occurred.
-create: An event of type `create` occurred.
-delete: >-
-  _<%= sender.login %>_ has deleted
+
+create: >-
+  _<%= sender.login %>_ created
   the <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
+
+delete: >-
+  _<%= sender.login %>_ deleted
+  the <%= ref_type %> `<%= ref %>`
+  on <<%= repository.html_url %>|<%= repository.full_name %>>
+
+watch: An event of type `watch` occurred.
 deployment: An event of type `deployment` occurred.
 deployment_status: An event of type `deployment_status` occurred.
 fork: An event of type `fork` occurred.

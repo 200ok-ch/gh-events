@@ -11,9 +11,10 @@ module GH::Events::Slack
     event = JSON.parse(payload, object_class: OpenStruct)
     type = GH::Events.typeof(event).to_s
 
-    # transform
-    event.ref.gsub!(/^refs\/heads\/(.+)$/, 'branch `\1`')
-    event.ref.gsub!(/^refs\/tags\/(.+)$/, 'tag `\1`')
+    # unify
+    event.ref_type = 'branch' if event.ref.match(/^refs\/heads\//)
+    event.ref_type = 'tag' if event.ref.match(/^refs\/tags\//)
+    event.ref = event.ref.split('/').last
 
     template = (templates[type] || "No template for type: #{type}.")
     render(template, event)
