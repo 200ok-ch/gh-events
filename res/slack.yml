@@ -5,7 +5,7 @@ unknown: >-
 
 push: >-
   _<%= pusher.name %>_ <%= forced ? 'force-' : '' %>pushed
-  <%= size %> commits
+  <%= size || commits.count %> commits
   to <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
   :star: <%= repository.stargazers_count %>
@@ -13,18 +13,18 @@ push: >-
   (<<%= compare %>|compare>)
 
 commit_comment: >-
-  _<%= comment.user.login %>_ commented the
-  <%= comment.url %>|commit `<%= comment.commit_id %>`> on
+  _<%= comment.user.login %>_ commented
+  commit <<%= comment.url %>|`<%= comment.commit_id %>`> on
   <<%= repository.html_url %>|<%= repository.full_name %>>: _<%= comment.body %>_
 
 create: >-
   _<%= sender.login %>_ created
-  the <%= ref_type %> `<%= ref %>`
+  <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 delete: >-
   _<%= sender.login %>_ deleted
-  the <%= ref_type %> `<%= ref %>`
+  <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 watch: An event of type `watch` occurred.
