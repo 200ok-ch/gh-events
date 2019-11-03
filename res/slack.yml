@@ -5,8 +5,8 @@ unknown: >-
 
 push: >-
   _<%= pusher.name %>_ <%= forced ? 'force-' : '' %>pushed
-  <%= size || commits.count %> commit<%= (size || commits.count > 1) ? 's' : '' %>
-  to <%= ref_type %> `<%= ref %>`
+  <% if ref_type == 'branch' %><%= num = size || commits.count %> commit<%= num > 1 ? 's' : '' %> to<% end %>
+  <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
   :star: <%= repository.stargazers_count %>
   :eye: <%= repository.watchers_count %>
