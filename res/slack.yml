@@ -12,7 +12,7 @@ push: >-
 
 commit_comment: >-
   _<%= comment.user.login %>_ commented
-  commit <<%= comment.url %>|`<%= comment.commit_id %>`> on
+  commit <<%= comment.html_url %>|`<%= comment.commit_id %>`> on
   <<%= repository.html_url %>|<%= repository.full_name %>>: _<%= comment.body %>_
 
 create: >-
@@ -36,7 +36,7 @@ issues: >-
 
 pull_request: >-
   _<%= pull_request.user.login %>_ <%= action %>
-  <<%= pull_request.url %>|pull request <%= pull_request.title %>>
+  <<%= pull_request.html_url %>|pull request <%= pull_request.title %>>
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 star: >-
