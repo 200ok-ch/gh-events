@@ -47,7 +47,7 @@ issues: >-
   on <<%= repository.html_url %>|<%= repository.full_name %>>
   <% if action == 'opened' %>\n| <%= issue.body %><% end %>
 
-issues.labeled:
+issues.labeled: >-
   :label:
   <<%= sender.html_url %>|<%= sender.login %>>
   labeled
