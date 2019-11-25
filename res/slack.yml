@@ -89,6 +89,16 @@ watch: >-
   <<%= repository.html_url %>|<%= repository.full_name %>>
   :eye: <%= repository.watchers_count %>
 
+# Ignore other status udpates than CircleCI failures for the moment
+status: >-
+  <% if context.match(/circleci/) and state == 'failure' %>
+  <<%= target_url %> | CircleCI build >
+  fails for commit
+  <<%= commit.html_url %> | <%= commit.commit.message %>>
+  from
+  <<%= sender.html_url %>|<%= sender.login %>>
+  <% end %>
+
 deployment: An event of type `deployment` occurred.
 deployment_status: An event of type `deployment_status` occurred.
 fork: An event of type `fork` occurred.
@@ -99,5 +109,4 @@ page_build: An event of type `page_build` occurred.
 public: An event of type `public` occurred.
 release: An event of type `release` occurred.
 repository: An event of type `repository` occurred.
-status: An event of type `status` occurred.
 team_add: An event of type `team_add` occurred.
