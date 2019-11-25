@@ -16,7 +16,8 @@ module GH::Events::Slack
     event.ref_type = 'tag' if event.ref&.match(/^refs\/tags\//)
     event.ref = event.ref&.split('/')&.last
 
-    template = (templates[type] || "No template for type: #{type}.")
+    template = templates[[type, event.action]*'.']
+    template ||= (templates[type] || "No template for type: #{type}.")
     render(template, event)
   end
 

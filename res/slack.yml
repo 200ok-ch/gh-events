@@ -38,6 +38,13 @@ issues: >-
   <%= action %>
   issue <<%= issue.url %>|<%= issue.title %>>
   on <<%= repository.html_url %>|<%= repository.full_name %>>
+  <% if action == 'opened' %>| <%= issue.body %><% end %>
+
+issues.labeled:
+  <<%= sender.html_url %>|<%= sender.login %>>
+  labeled
+  issue <<%= issue.url %>|<%= issue.title %>>
+  as `<%= label.name %>`
 
 pull_request: >-
   <<%= sender.html_url %>|<%= sender.login %>>
