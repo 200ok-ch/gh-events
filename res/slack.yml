@@ -11,42 +11,48 @@ push: >-
   (<<%= compare %>|compare>)
 
 commit_comment: >-
-  _<%= comment.user.login %>_ commented
+  <<%= sender.html_url %>|<%= sender.login %>>
+  commented
   commit <<%= comment.html_url %>|`<%= comment.commit_id %>`> on
   <<%= repository.html_url %>|<%= repository.full_name %>>: _<%= comment.body %>_
 
 create: >-
-  _<%= sender.login %>_ created
+  <<%= sender.html_url %>|<%= sender.login %>>
+  created
   <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 delete: >-
-  _<%= sender.login %>_ deleted
+  <<%= sender.html_url %>|<%= sender.login %>>
+  deleted
   <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 issue_comment: >-
-  _<%= comment.user.login %>_ commented
+  <<%= sender.html_url %>|<%= sender.login %>>
+  commented
   on <<%= comment.html_url %>|<%= issue.title %>>: _<%= comment.body %>_
 
 issues: >-
-  _<%= issue.user.login %>_ <%= action %>
-  <<%= issue.url %>|issue <%= issue.title %>>
+  <<%= sender.html_url %>|<%= sender.login %>>
+  <%= action %>
+  issue <<%= issue.url %>|<%= issue.title %>>
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 pull_request: >-
-  _<%= pull_request.user.login %>_ <%= action %>
-  <<%= pull_request.html_url %>|pull request <%= pull_request.title %>>
+  <<%= sender.html_url %>|<%= sender.login %>>
+  <%= action %>
+  PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
 star: >-
-  <<%= sender.url %>|<%= sender.login %>>
+  <<%= sender.html_url %>|<%= sender.login %>>
   <%= action == 'created' ? 'starred' : 'unstarred' %>
   <<%= repository.html_url %>|<%= repository.full_name %>>
   :star: <%= repository.stargazers_count %>
 
 watch: >-
-  <<%= sender.url %>|<%= sender.login %>>
+  <<%= sender.html_url %>|<%= sender.login %>>
   <%= action == 'created' ? 'started' : 'stopped' %> watching
   <<%= repository.html_url %>|<%= repository.full_name %>>
   :eye: <%= repository.watchers_count %>
