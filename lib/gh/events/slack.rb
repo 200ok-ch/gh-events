@@ -12,9 +12,9 @@ module GH::Events::Slack
     type = GH::Events.typeof(event).to_s
 
     # unify
-    event.ref_type = 'branch' if event.ref.match(/^refs\/heads\//)
-    event.ref_type = 'tag' if event.ref.match(/^refs\/tags\//)
-    event.ref = event.ref.split('/').last
+    event.ref_type = 'branch' if event.ref&.match(/^refs\/heads\//)
+    event.ref_type = 'tag' if event.ref&.match(/^refs\/tags\//)
+    event.ref = event.ref&.split('/').last
 
     template = (templates[type] || "No template for type: #{type}.")
     render(template, event)
