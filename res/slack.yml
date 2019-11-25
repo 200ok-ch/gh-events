@@ -27,18 +27,29 @@ delete: >-
   <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
+issue_comment: >-
+  _<%= comment.user.login %>_ commented
+  on <<%= comment.html_url %>|<%= issue.title %>>: _<%= comment.body %>_
+
+issues: >-
+  _<%= issue.user.login %>_ <%= action %>
+  <<%= issue.url %>|issue <%= issue.title %>>
+  on <<%= repository.html_url %>|<%= repository.full_name %>>
+
+pull_request: >-
+  _<%= pull_request.user.login %>_ <%= action %>
+  <<%= pull_request.url %>|pull request <%= pull_request.title %>>
+  on <<%= repository.html_url %>|<%= repository.full_name %>>
+
 watch: An event of type `watch` occurred.
 deployment: An event of type `deployment` occurred.
 deployment_status: An event of type `deployment_status` occurred.
 fork: An event of type `fork` occurred.
 gollum: An event of type `gollum` occurred.
-issue_comment: An event of type `issue_comment` occurred.
-issues: An event of type `issues` occurred.
 member: An event of type `member` occurred.
 membership: An event of type `membership` occurred.
 page_build: An event of type `page_build` occurred.
 public: An event of type `public` occurred.
-pull_request: An event of type `pull_request` occurred.
 pull_request_review_comment: An event of type `pull_request_review_comment` occurred.
 release: An event of type `release` occurred.
 repository: An event of type `repository` occurred.
