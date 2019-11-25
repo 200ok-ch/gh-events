@@ -8,7 +8,7 @@ watch: # 49
     - action
     - repository
   exactly:
-    action: started
+    :action: started
 
 # check_run # 1
 

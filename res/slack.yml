@@ -8,8 +8,6 @@ push: >-
   <% if ref_type == 'branch' %><%= num = size || commits.count %> commit<%= num > 1 ? 's' : '' %> to<% end %>
   <%= ref_type %> `<%= ref %>`
   on <<%= repository.html_url %>|<%= repository.full_name %>>
-  :star: <%= repository.stargazers_count %>
-  :eye: <%= repository.watchers_count %>
   (<<%= compare %>|compare>)
 
 commit_comment: >-
@@ -41,7 +39,18 @@ pull_request: >-
   <<%= pull_request.url %>|pull request <%= pull_request.title %>>
   on <<%= repository.html_url %>|<%= repository.full_name %>>
 
-watch: An event of type `watch` occurred.
+star: >-
+  <<%= sender.url %>|<%= sender.login %>>
+  <%= action == 'created' ? 'starred' : 'unstarred' %>
+  <<%= repository.html_url %>|<%= repository.full_name %>>
+  :star: <%= repository.stargazers_count %>
+
+watch: >-
+  <<%= sender.url %>|<%= sender.login %>>
+  <%= action == 'created' ? 'started' : 'stopped' %> watching
+  <<%= repository.html_url %>|<%= repository.full_name %>>
+  :eye: <%= repository.watchers_count %>
+
 deployment: An event of type `deployment` occurred.
 deployment_status: An event of type `deployment_status` occurred.
 fork: An event of type `fork` occurred.
@@ -53,6 +62,5 @@ public: An event of type `public` occurred.
 pull_request_review_comment: An event of type `pull_request_review_comment` occurred.
 release: An event of type `release` occurred.
 repository: An event of type `repository` occurred.
-star: An event of type `star` occurred.
 status: An event of type `status` occurred.
 team_add: An event of type `team_add` occurred.
