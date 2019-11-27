@@ -1,112 +1,137 @@
 # refs are unified. So all events have `ref` and `ref_type`.
 
-unknown: >-
-  An unknown event occurred.
+unknown:
+  text: >-
+    An unknown event occurred.
 
-push: >-
-  :soon:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  <%= forced ? 'force-' : '' %>pushed
-  <% if ref_type == 'branch' %><%= num = size || commits.count %> commit<%= num > 1 ? 's' : '' %> to<% end %>
-  <%= ref_type %> `<%= ref %>`
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
-  (<<%= compare %>|compare>)
+push:
+  text: >-
+    :arrow_up:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <%= forced ? 'force-' : '' %>pushed
+    <% if ref_type == 'branch' %><%= num = size || commits.count %> commit<%= num > 1 ? 's' : '' %> to<% end %>
+    <%= ref_type %> `<%= ref %>`
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+    (<<%= compare %>|compare>)
 
-commit_comment: >-
-  :left_speech_bubble:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  commented
-  commit <<%= comment.html_url %>|`<%= comment.commit_id %>`> on
-  <<%= repository.html_url %>|<%= repository.full_name %>>: _<%= comment.body %>_
+commit_comment:
+  text: >-
+    :left_speech_bubble:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    commented
+    commit <<%= comment.html_url %>|`<%= comment.commit_id %>`> on
+    <<%= repository.html_url %>|<%= repository.full_name %>>: _<%= comment.body %>_
 
-create: >-
-  :sparkles:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  created
-  <%= ref_type %> `<%= ref %>`
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
+create:
+  text: >-
+    :sparkles:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    created
+    <%= ref_type %> `<%= ref %>`
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
 
-delete: >-
-  :collision:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  deleted
-  <%= ref_type %> `<%= ref %>`
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
+delete:
+  text: >-
+    :collision:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    deleted
+    <%= ref_type %> `<%= ref %>`
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
 
-issue_comment: >-
-  :left_speech_bubble:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  commented
-  on <<%= comment.html_url %>|<%= issue.title %>>: _<%= comment.body %>_
+issue_comment:
+  text: >-
+    :left_speech_bubble:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    commented
+    on <<%= comment.html_url %>|<%= issue.title %>>: _<%= comment.body %>_
 
-issues: >-
-  :inbox_tray:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  <%= action %>
-  issue <<%= issue.html_url %>|<%= issue.title %>>
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
-  <% if action == 'opened' %>\n| <%= issue.body %><% end %>
+issues:
+  text: >-
+    :inbox_tray:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <%= action %>
+    issue <<%= issue.html_url %>|<%= issue.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+    <% if action == 'opened' %>\n| <%= issue.body %><% end %>
 
-issues.labeled: >-
-  :label:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  labeled
-  issue <<%= issue.html_url %>|<%= issue.title %>>
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
-  as `<%= label.name %>`
+issues.labeled:
+  text: >-
+    :label:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    labeled
+    issue <<%= issue.html_url %>|<%= issue.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+    as `<%= label.name %>`
 
-pull_request: >-
-  :gift:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  <%= action %>
-  PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
+pull_request:
+  text: >-
+    :gift:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <%= action %>
+    PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
 
-pull_request.labeled: >-
-  <<%= sender.html_url %>|<%= sender.login %>>
-  labeled
-  PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
-  on <<%= repository.html_url %>|<%= repository.full_name %>>
-  as `<%= label.name %>`
+pull_request.labeled:
+  text: >-
+    <<%= sender.html_url %>|<%= sender.login %>>
+    labeled
+    PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+    as `<%= label.name %>`
 
-pull_request_review_comment: >-
-  :left_speech_bubble:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  commented
-  on <<%= comment.html_url %>|<%= .pull_request.title %>>: _<%= comment.body %>_
+pull_request_review_comment:
+  text: >-
+    :left_speech_bubble:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    commented
+    on <<%= comment.html_url %>|<%= .pull_request.title %>>: _<%= comment.body %>_
 
-star: >-
-  :star:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  <%= action == 'created' ? 'starred' : 'unstarred' %>
-  <<%= repository.html_url %>|<%= repository.full_name %>>
-  :star: <%= repository.stargazers_count %>
+star:
+  text: >-
+    :star:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <%= action == 'created' ? 'starred' : 'unstarred' %>
+    <<%= repository.html_url %>|<%= repository.full_name %>>
+    :star: <%= repository.stargazers_count %>
 
-watch: >-
-  :eye:
-  <<%= sender.html_url %>|<%= sender.login %>>
-  <%= action == 'created' ? 'started' : 'stopped' %> watching
-  <<%= repository.html_url %>|<%= repository.full_name %>>
-  :eye: <%= repository.watchers_count %>
+watch:
+  text: >-
+    :eye:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <%= action == 'created' ? 'started' : 'stopped' %> watching
+    <<%= repository.html_url %>|<%= repository.full_name %>>
+    :eye: <%= repository.watchers_count %>
 
 # Ignore other status udpates than CircleCI failures for the moment
-status: >-
-  <% if context.match(/circleci/) and state == 'failure' %>
-  <<%= target_url %> | CircleCI build >
-  fails for commit
-  <<%= commit.html_url %> | <%= commit.commit.message %>>
-  from
-  <<%= sender.html_url %>|<%= sender.login %>>
-  <% end %>
+status:
+  text: >-
+    <% if context.match(/circleci/) and state == 'failure' %>
+    <<%= target_url %> | CircleCI build >
+    fails for commit
+    <<%= commit.html_url %> | <%= commit.commit.message %>>
+    from
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <% end %>
 
-deployment: An event of type `deployment` occurred.
-deployment_status: An event of type `deployment_status` occurred.
-fork: An event of type `fork` occurred.
-gollum: An event of type `gollum` occurred.
-member: An event of type `member` occurred.
-membership: An event of type `membership` occurred.
-page_build: An event of type `page_build` occurred.
-public: An event of type `public` occurred.
-release: An event of type `release` occurred.
-repository: An event of type `repository` occurred.
-team_add: An event of type `team_add` occurred.
+deployment:
+  text: An event of type `deployment` occurred.
+deployment_status:
+  text: An event of type `deployment_status` occurred.
+fork:
+  text: An event of type `fork` occurred.
+gollum:
+  text: An event of type `gollum` occurred.
+member:
+  text: An event of type `member` occurred.
+membership:
+  text: An event of type `membership` occurred.
+page_build:
+  text: An event of type `page_build` occurred.
+public:
+  text: An event of type `public` occurred.
+release:
+  text: An event of type `release` occurred.
+repository:
+  text: An event of type `repository` occurred.
+team_add:
+  text: An event of type `team_add` occurred.
