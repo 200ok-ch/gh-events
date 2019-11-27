@@ -153,6 +153,7 @@ star:
 status:
   text: >-
     <% if context.match(/circleci/) and state == 'failure' %>
+    [`<%= stype %>`]
     <<%= target_url %> | CircleCI build >
     fails for commit
     <<%= commit.html_url %> | <%= commit.commit.message %>>
@@ -189,7 +190,7 @@ watch: false
 # `no_template` will be used for recognized events which have no
 # template assigned.
 no_template:
-  text: No template for event.
+  text: No template for event of type `<%= stype %>`.
   attachments:
     - fallback: Event details as json.
       color: gray
@@ -200,7 +201,7 @@ no_template:
 
 # `unknown` will be used for events that could not be recognized.
 unknown:
-  text: An unknown event occurred
+  text: An unknown event occurred (stype: `<%=stype%>`)
   attachments:
     - fallback: Event details as json.
       color: gray
