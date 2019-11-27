@@ -17,10 +17,28 @@ push:
 commit_comment:
   text: >-
     :left_speech_bubble:
-    <<%= sender.html_url %>|<%= sender.login %>>
-    commented
-    commit <<%= comment.html_url %>|`<%= comment.commit_id %>`> on
-    <<%= repository.html_url %>|<%= repository.full_name %>>: <%= comment.body %>
+    new comment for
+    commit <<%= comment.html_url %>|`<%= comment.commit_id %>`>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+  attachments:
+    - fallback: <%= comment.body %>
+      color: '#36a64f'
+      # pretext: Optional text that appears above the attachment block
+      author_name: <%= sender.login %>
+      author_link: <%= sender.html_url %>
+      author_icon: <%= sender.avatar_url %>
+      # title: Slack API Documentation
+      # title_link: https://api.slack.com/
+      text: <%= comment.body %>
+      # fields:
+      #   - title: Priority
+      #     value: High
+      #     short: false
+      # image_url: http://my-website.com/path/to/image.jpg
+      # thumb_url: http://example.com/path/to/thumb.png
+      # footer: Slack API
+      # footer_icon: https://platform.slack-edge.com/img/default_application_icon.png
+      # ts: 123456789
 
 create:
   text: >-
@@ -44,6 +62,13 @@ issue_comment:
     <<%= sender.html_url %>|<%= sender.login %>>
     commented
     on <<%= comment.html_url %>|<%= issue.title %>>: <%= comment.body %>
+  attachments:
+    - fallback: <%= comment.body %>
+      color: '#36a64f'
+      author_name: <%= sender.login %>
+      author_link: <%= sender.html_url %>
+      author_icon: <%= sender.avatar_url %>
+      text: <%= comment.body %>
 
 issues:
   text: >-
