@@ -36,7 +36,7 @@ module GH::Events::Slack
   end
 
   def render(template, data)
-    ERB.new(template).result(ErbBinding.new(data).get_binding)
+    ERB.new(JSON.unparse(template)).result(ErbBinding.new(data).get_binding)
   end
 
 end
