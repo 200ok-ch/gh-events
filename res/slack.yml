@@ -57,7 +57,7 @@ issue_comment:
     :left_speech_bubble:
     <<%= sender.html_url %>|<%= sender.login %>>
     commented
-    on <<%= comment.html_url %>|<%= issue.title %>>: <%= comment.body %>
+    on <<%= comment.html_url %>|<%= issue.title %>>
   attachments:
     - fallback: <%= comment.body %>
       color: '#36a64f'
@@ -150,22 +150,22 @@ star:
     :star: <%= repository.stargazers_count %>
 
 # Ignore other status udpates than CircleCI failures for the moment
-status:
+status: false
+
+status.failure:
   text: >-
-    <% if context.match(/circleci/) and state == 'failure' %>
-    [`<%= stype %>`]
     <<%= target_url %> | CircleCI build >
     fails for commit
     <<%= commit.html_url %> | <%= commit.commit.message %>>
     from
     <<%= sender.html_url %>|<%= sender.login %>>
-    <% end %>
 
 fork:
   text: >-
     :fork_and_knife:
     <<%= sender.html_url %>|<%= sender.login %>>
     forked <<%= repository.html_url %>|<%= repository.full_name %>>
+    :fork_and_knife: <%= repository.forks_count %>
 
 deployment:
   text: An event of type `deployment` occurred.

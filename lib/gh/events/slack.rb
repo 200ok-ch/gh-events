@@ -9,7 +9,7 @@ module GH::Events::Slack
 
   # this is a carefully curated list of fields in gh events that might
   # be helpful when filtering events
-  ASPECTS = %i[type action state context]
+  ASPECTS = %i[type action state]
 
   def translate(payload)
     event = JSON.parse(payload, object_class: OpenStruct)
