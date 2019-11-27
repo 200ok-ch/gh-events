@@ -8,7 +8,7 @@ module GH::Events::Slack
   extend self
 
   # this is a carefully curated list of fields in gh events that might
-  # helpful when filtering events
+  # be helpful when filtering events
   ASPECTS = %i[type action state context]
 
   def translate(payload)
