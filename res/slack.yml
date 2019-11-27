@@ -69,6 +69,12 @@ pull_request.labeled: >-
   on <<%= repository.html_url %>|<%= repository.full_name %>>
   as `<%= label.name %>`
 
+pull_request_review_comment: >-
+  :left_speech_bubble:
+  <<%= sender.html_url %>|<%= sender.login %>>
+  commented
+  on <<%= comment.html_url %>|<%= .pull_request.title %>>: _<%= comment.body %>_
+
 star: >-
   :star:
   <<%= sender.html_url %>|<%= sender.login %>>
@@ -91,7 +97,6 @@ member: An event of type `member` occurred.
 membership: An event of type `membership` occurred.
 page_build: An event of type `page_build` occurred.
 public: An event of type `public` occurred.
-pull_request_review_comment: An event of type `pull_request_review_comment` occurred.
 release: An event of type `release` occurred.
 repository: An event of type `repository` occurred.
 status: An event of type `status` occurred.
