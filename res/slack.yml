@@ -1,9 +1,5 @@
 # refs are unified. So all events have `ref` and `ref_type`.
 
-unknown:
-  text: >-
-    An unknown event occurred.
-
 push:
   text: >-
     :arrow_up:
@@ -50,7 +46,7 @@ create:
 
 delete:
   text: >-
-    :collision:
+    :wastebasket:
     <<%= sender.html_url %>|<%= sender.login %>>
     deleted
     <%= ref_type %> `<%= ref %>`
@@ -77,7 +73,20 @@ issues:
     <%= action %>
     issue <<%= issue.html_url %>|<%= issue.title %>>
     on <<%= repository.html_url %>|<%= repository.full_name %>>
-    <% if action == 'opened' %>: <%= issue.body %><% end %>
+
+issues.opened:
+  text: >-
+    :inbox_tray:
+    new issue
+    <<%= issue.html_url %>|<%= issue.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+  attachments:
+    - fallback: <%= issue.body %>
+      color: red
+      author_name: <%= sender.login %>
+      author_link: <%= sender.html_url %>
+      author_icon: <%= sender.avatar_url %>
+      text: <%= issue.body %>
 
 issues.labeled:
   text: >-
@@ -96,6 +105,21 @@ pull_request:
     PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
     on <<%= repository.html_url %>|<%= repository.full_name %>>
 
+pull_request.opened:
+  text: >-
+    :gift:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    opened
+    PR <<%= pull_request.html_url %>|<%= pull_request.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+  attachments:
+    - fallback: <%= pull_request.body %>
+      color: red
+      author_name: <%= sender.login %>
+      author_link: <%= sender.html_url %>
+      author_icon: <%= sender.avatar_url %>
+      text: <%= pull_request.body %>
+
 pull_request.labeled:
   text: >-
     <<%= sender.html_url %>|<%= sender.login %>>
@@ -107,9 +131,15 @@ pull_request.labeled:
 pull_request_review_comment:
   text: >-
     :left_speech_bubble:
-    <<%= sender.html_url %>|<%= sender.login %>>
-    commented
-    on <<%= comment.html_url %>|<%= .pull_request.title %>>: <%= comment.body %>
+    new review comment
+    on <<%= comment.html_url %>|<%= pull_request.title %>>
+  attachments:
+    - fallback: <%= comment.body %>
+      color: red
+      author_name: <%= sender.login %>
+      author_link: <%= sender.html_url %>
+      author_icon: <%= sender.avatar_url %>
+      text: <%= comment.body %>
 
 star:
   text: >-
@@ -118,14 +148,6 @@ star:
     <%= action == 'created' ? 'starred' : 'unstarred' %>
     <<%= repository.html_url %>|<%= repository.full_name %>>
     :star: <%= repository.stargazers_count %>
-
-watch:
-  text: >-
-    :eye:
-    <<%= sender.html_url %>|<%= sender.login %>>
-    <%= action == 'created' ? 'started' : 'stopped' %> watching
-    <<%= repository.html_url %>|<%= repository.full_name %>>
-    :eye: <%= repository.watchers_count %>
 
 # Ignore other status udpates than CircleCI failures for the moment
 status:
@@ -160,3 +182,29 @@ repository:
   text: An event of type `repository` occurred.
 team_add:
   text: An event of type `team_add` occurred.
+
+# `false` will make it end with exit code 1
+watch: false
+
+# `no_template` will be used for recognized events which have no
+# template assigned.
+no_template:
+  text: No template for event.
+  attachments:
+    - fallback: Event details as json.
+      color: gray
+      text: |
+        ```
+        <%= JSON.unparse(self.marshal_dump) %>
+        ```
+
+# `unknown` will be used for events that could not be recognized.
+unknown:
+  text: An unknown event occurred
+  attachments:
+    - fallback: Event details as json.
+      color: gray
+      text: |
+        ```
+        <%= JSON.unparse(self.marshal_dump) %>
+        ```
