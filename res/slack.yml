@@ -161,12 +161,17 @@ status:
     <<%= sender.html_url %>|<%= sender.login %>>
     <% end %>
 
+fork:
+  text: >-
+    :fork_and_knife:
+    [`<%= stype >`]
+    <<%= sender.html_url %>|<%= sender.login %>>
+    forked <<%= repository.html_url %>|<%= repository.full_name %>>
+
 deployment:
   text: An event of type `deployment` occurred.
 deployment_status:
   text: An event of type `deployment_status` occurred.
-fork:
-  text: An event of type `fork` occurred.
 gollum:
   text: An event of type `gollum` occurred.
 member:
