@@ -164,7 +164,6 @@ status:
 fork:
   text: >-
     :fork_and_knife:
-    [`<%= stype >`]
     <<%= sender.html_url %>|<%= sender.login %>>
     forked <<%= repository.html_url %>|<%= repository.full_name %>>
 
@@ -206,7 +205,7 @@ no_template:
 
 # `unknown` will be used for events that could not be recognized.
 unknown:
-  text: An unknown event occurred (stype: `<%=stype%>`)
+  text: "An unknown event occurred (stype: `<%=stype%>`)"
   attachments:
     - fallback: Event details as json.
       color: gray
