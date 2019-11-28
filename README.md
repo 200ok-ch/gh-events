@@ -1,8 +1,19 @@
-# Github::Events
+# Github Events
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/github/events`. To experiment with that code, run `bin/console` for an interactive prompt.
+Via Webhooks Github can send a plethora of events, which can be used to facilitate all kinds of automation.
 
-TODO: Delete this and the text above, and describe your gem
+These events are _untyped_, meaning they clearly lack a property `type` to identify the type of event received. (The rationale here might be that one would have differen webhook endpoints for each type of events. But maintaining lots of endpoints is cumbersome. When all the events end up in one endpoint, this library helps by adding a property `type` to the event.)
+
+Additionally this library provides means of translating the plain event into a human readable textutal representation. This functionality is wrapped in a command line utility, for your convenience.
+
+## Example Usage
+
+Let's say you have a github _commit_comment_ event stored in a file `event.json`
+
+```
+% cat event.json | gh-event2text
+...
+```
 
 ## Installation
 
@@ -19,10 +30,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install gh-events
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## References
 
