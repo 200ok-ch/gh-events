@@ -14,6 +14,7 @@ module GH
     HEURISTICS = YAML.load_file(PATH)
 
     def typeof(payload)
+      payload = JSON.parse(payload) if payload.is_a?(String)
       payload = payload.marshal_dump if payload.is_a?(OpenStruct)
       keys = payload.keys.map(&:to_s)
       HEURISTICS.each do |type, characteristics|

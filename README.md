@@ -8,6 +8,19 @@ Additionally this library provides means of translating the plain event into a h
 
 ## Example Usage
 
+You can use the command `gh-events` to list the types of events stortef in JSON files.
+
+```
+% gh-events spec/fixtures/*.json
+events/001.json: commit_comment
+events/002.json: create
+events/003.json: delete
+events/004.json: deployment
+events/005.json: deployment_status
+events/006.json: fork
+...
+```
+
 Let's say you have a github _commit_comment_ event stored in a file `event.json`
 
 ```

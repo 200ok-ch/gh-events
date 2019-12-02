@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'gh/events'
+
+ARGV.each do |file|
+  type = GH::Events.typeof(File.read(file))
+  puts "#{file}: #{type}"
+end
