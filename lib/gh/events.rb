@@ -1,5 +1,6 @@
 require "gh/events/version"
 require "gh/events/slack"
+require 'hash'
 
 require 'yaml'
 require 'ostruct'
@@ -16,7 +17,8 @@ module GH
     def typeof(payload)
       payload = JSON.parse(payload) if payload.is_a?(String)
       payload = payload.marshal_dump if payload.is_a?(OpenStruct)
-      keys = payload.keys.map(&:to_s)
+      payload = payload.deep_stringify_keys
+      keys = payload.keys
       HEURISTICS.each do |type, characteristics|
         # puts ("-" * 30) + " #{type}"
 
