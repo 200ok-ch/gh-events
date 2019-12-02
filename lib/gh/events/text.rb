@@ -42,7 +42,7 @@ module GH::Events::Text
     template = _result[:ts].compact.last
 
     # if the event was set to `false` abort
-    exit(1) if template === false
+    return nil if template === false
 
     # if there is no template use a default
     template ||= templates['no_template']
