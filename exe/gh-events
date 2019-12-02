@@ -6,6 +6,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'gh/events'
 
 ARGV.each do |file|
-  type = GH::Events.typeof(File.read(file))
+  begin
+    type = GH::Events.typeof(File.read(file))
+  rescue
+    type = 'error'
+  end
   puts "#{file}: #{type}"
 end
