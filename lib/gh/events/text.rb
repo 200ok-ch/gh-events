@@ -3,7 +3,7 @@ require 'erb'
 require 'ostruct'
 require 'json'
 
-module GH::Events::Slack
+module GH::Events::Text
 
   extend self
 
@@ -11,7 +11,11 @@ module GH::Events::Slack
   # be helpful when filtering events
   ASPECTS = %i[type action state]
 
-  def translate(payload)
+  def translate(payload, dict)
+    dict ||= 'plain'
+
+    templates = YAML.load_file(templates_file(dict))
+
     event = JSON.parse(payload, object_class: OpenStruct)
     type = GH::Events.typeof(event).to_s
 
@@ -46,12 +50,14 @@ module GH::Events::Slack
     render(template, event)
   end
 
-  def templates_file
-    File.expand_path(File.join(%w(.. .. .. .. res slack.yml)), __FILE__)
-  end
+  def templates_file(dict)
+    preset = File.expand_path(File.join(%w(.. .. .. .. res) << "#{dict}.yml"), __FILE__)
+    return preset if File.exists?(preset)
 
-  def templates
-    @templates ||= YAML.load_file(templates_file)
+    return dict if File.exists?(dict.to_s)
+
+    warn "Could not find dict file: #{dict}"
+    exit(1)
   end
 
   class ErbBinding < OpenStruct

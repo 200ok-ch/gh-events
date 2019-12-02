@@ -1,0 +1,118 @@
+# All refs are unified. So all events have `ref` and `ref_type`.
+# Additionally all events have `type` and `stype`.
+
+push: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %> <%= forced ? 'force-' : '' %>pushed
+  <% if ref_type == 'branch' %><%= num = size || commits.count %> commit<%= num > 1 ? 's' : '' %> to<% end %>
+  <%= ref_type %> `<%= ref %>`
+
+commit_comment: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  commented on
+  commit `<%= comment.commit_id %>`>: "<%= comment.body %>"
+
+create: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  created
+  <%= ref_type %> `<%= ref %>`
+
+delete: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  deleted
+  <%= ref_type %> `<%= ref %>`
+
+issue_comment: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  commented
+  on issue "<%= issue.title %>": <%= comment.body %>
+
+issues: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  <%= action %>
+  issue "<%= issue.title %>"
+
+issues.opened: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  create the issue
+  "<%= issue.title %>": <%= repository.html_url %>
+
+issues.labeled: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  labeled
+  issue "<%= issue.title %>"
+  as `<%= label.name %>`
+
+pull_request: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  <%= action %>
+  PR "<%= pull_request.title %>"
+
+pull_request.opened: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  opened
+  PR <%= pull_request.title %>: <%= pull_request.body %>
+
+pull_request.labeled: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  labeled
+  PR "<%= pull_request.title %>"
+  as `<%= label.name %>`
+
+pull_request_review_comment: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  reviewed: <%= comment.body %>
+
+star: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  <%= action == 'created' ? 'starred' : 'unstarred' %>
+  <%= repository.full_name %>
+  (<%= repository.stargazers_count %>)
+
+# Ignore other status udpates than CircleCI failures for the moment
+status: false
+
+status.failure: >-
+  [<%= repository.full_name %>]
+  CircleCI build failed
+  for commit "<%= commit.commit.message %>"
+  by "<%= sender.login %>"
+
+fork: >-
+  [<%= repository.full_name %>]
+  <%= sender.login %>
+  forked <%= repository.full_name %>
+  (<%= repository.forks_count %>)
+
+deployment: An event of type `deployment` occurred.
+deployment_status: An event of type `deployment_status` occurred.
+gollum: An event of type `gollum` occurred.
+member: An event of type `member` occurred.
+membership: An event of type `membership` occurred.
+page_build: An event of type `page_build` occurred.
+public: An event of type `public` occurred.
+release: An event of type `release` occurred.
+repository: An event of type `repository` occurred.
+team_add: An event of type `team_add` occurred.
+
+# `false` will make it end with exit code 1
+watch: false
+
+# `no_template` will be used for recognized events which have no
+# template assigned.
+no_template: No template for event of type `<%= type %>` (`<%= stype %>`).
+
+# `unknown` will be used for events that could not be recognized.
+unknown: "An unknown event occurred (stype: `<%= stype %>`)"

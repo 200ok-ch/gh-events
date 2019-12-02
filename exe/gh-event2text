@@ -5,4 +5,4 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'gh/events'
 
-puts GH::Events::Slack.translate(ARGF.read)
+puts GH::Events::Text.translate(STDIN.read, ARGV.first)

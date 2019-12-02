@@ -1,5 +1,5 @@
 require "gh/events/version"
-require "gh/events/slack"
+require "gh/events/text"
 require 'hash'
 
 require 'yaml'
