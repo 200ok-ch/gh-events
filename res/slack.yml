@@ -74,6 +74,15 @@ issues:
     issue <<%= issue.html_url %>|<%= issue.title %>>
     on <<%= repository.html_url %>|<%= repository.full_name %>>
 
+issues.assigned:
+  text: >-
+    :inbox_tray:
+    <<%= sender.html_url %>|<%= sender.login %>>
+    <%= action %>
+    issue <<%= issue.html_url %>|<%= issue.title %>>
+    on <<%= repository.html_url %>|<%= repository.full_name %>>
+    to [TODO whom]
+
 issues.opened:
   text: >-
     :inbox_tray:
