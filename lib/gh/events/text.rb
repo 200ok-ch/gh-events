@@ -47,7 +47,7 @@ module GH::Events::Text
     # if there is no template use a default
     template ||= templates['no_template']
 
-    render(template, event)
+    render(template, event).gsub("\n", "\\n")
   end
 
   def templates_file(dict)
