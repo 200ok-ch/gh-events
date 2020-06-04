@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gh-events (0.8.0)
+    gh-events (0.8.1)
 
 GEM
   remote: https://rubygems.org/
@@ -35,4 +35,4 @@ DEPENDENCIES
   rspec_junit_formatter (~> 0.4)
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
