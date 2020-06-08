@@ -47,7 +47,22 @@ module GH::Events::Text
     # if there is no template use a default
     template ||= templates['no_template']
 
-    render(template, event).gsub(/[\n\r]+/, '\n')
+    res = render(template, event).gsub(/[\n\r]+/, '\n')
+    validate(res, dict)
+    res
+  end
+
+  # Validate the format of the response in case it's JSON
+  def validate(response, channel)
+    return unless channel == "slack"
+    begin
+      JSON.parse(response)
+    rescue Exception => e
+      warn "Rendered template is not valid JSON"
+      warn e
+      exit 1
+    end
+    response
   end
 
   def templates_file(dict)

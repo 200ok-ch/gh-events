@@ -17,7 +17,7 @@ commit_comment:
     commit <<%= comment.html_url %>|`<%= comment.commit_id %>`>
     on <<%= repository.html_url %>|<%= repository.full_name %>>
   attachments:
-    - fallback: <%= comment.body %>
+    - fallback: <%= comment.body.gsub(/"/,'\"') %>
       color: '#36a64f'
       # pretext: Optional text that appears above the attachment block
       author_name: <%= sender.login %>
@@ -25,7 +25,7 @@ commit_comment:
       author_icon: <%= sender.avatar_url %>
       # title: Slack API Documentation
       # title_link: https://api.slack.com/
-      text: <%= comment.body %>
+      text: <%= comment.body.gsub(/"/,'\"') %>
       # fields:
       #   - title: Priority
       #     value: High
@@ -57,14 +57,14 @@ issue_comment:
     :left_speech_bubble:
     <<%= sender.html_url %>|<%= sender.login %>>
     commented
-    on <<%= comment.html_url %>|<%= issue.title %>>
+    on <<%= comment.html_url %>|<%= issue.title.gsub(/"/,'\"') %>>
   attachments:
-    - fallback: <%= comment.body %>
+    - fallback: <%= comment.body.gsub(/"/,'\"') %>
       color: '#36a64f'
       author_name: <%= sender.login %>
       author_link: <%= sender.html_url %>
       author_icon: <%= sender.avatar_url %>
-      text: <%= comment.body %>
+      text: <%= comment.body.gsub(/"/,'\"') %>
 
 issues:
   text: >-
@@ -143,12 +143,12 @@ pull_request_review_comment:
     new review comment
     on <<%= comment.html_url %>|<%= pull_request.title %>>
   attachments:
-    - fallback: <%= comment.body %>
+    - fallback: <%= comment.body.gsub(/"/,'\"') %>
       color: red
       author_name: <%= sender.login %>
       author_link: <%= sender.html_url %>
       author_icon: <%= sender.avatar_url %>
-      text: <%= comment.body %>
+      text: <%= comment.body.gsub(/"/,'\"') %>
 
 star:
   text: >-
